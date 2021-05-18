@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from 'src/app/services/todo.service';
 
 
 @Component({
@@ -9,34 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  pendings = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
 
-  inProgress = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog',
-    'ZEK TEST'
-  ];
+ 
+  data = {
+    pendings:
+      ["spor"],
+    inProgress:
+      ["yemek"],
+    done:
+      ["İş"]
+  }
 
   constructor(
+    private todoService:TodoService
     
   ) { }
 
   ngOnInit(): void {
+    //this.getAllTodos();
+
+    
  
     }
     drop(event: CdkDragDrop<string[]>) {
@@ -47,31 +40,39 @@ export class HomeComponent implements OnInit {
                           event.container.data,
                           event.previousIndex,
                           event.currentIndex);
+
+                          
       }
     }
 
-    addTodo(todo: { value: string; }){
-      this.pendings.push(todo.value);
-      todo.value='';
-
+    addTodo(title: any,describtion: any)
+    {
+    const obj = {Title:title.value,desc:describtion.value};
+    this.todoService.addTodo(obj)
+    .subscribe((res: any)=>{
+      console.log(res);
+    },(err: any)=>{
+      console.log(err);
+    });
     }
 
-   
-    
-    
+    // getAllTodos(){
+    //   this.todoService.getAllTodos()
+    //   .subscribe((res)=>{
+    //     Object.keys(res).forEach((key)=>{
+          
+    //        return this.data;
+    //     })
+    //   },(err)=>{
+    //   console.log(err);
+    //   });
+    // }
+ 
     
   }
-
-  
+   
     
-  
 
-  
-    
-  
-  
-  
-  
 
 
 function next(next: any, arg1: (res: any) => void, error: any, arg3: (err: any) => void) {
