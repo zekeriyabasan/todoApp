@@ -1,5 +1,6 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 
@@ -14,11 +15,11 @@ export class TodoService {
     private http:HttpClient
   ) { }
 
-  addTodo(obj: { Title: any; desc: any; }){
+  addTodo(obj: { "Title": any; "desc": any; }){
     return this.http.post('http://localhost:5000/addTodo',obj);
   }
 
-  getAllTodos(){
+  getAllTodos(): Observable<any>{
     return this.http.get('http://localhost:5000/getTodos');
 
   }
@@ -27,7 +28,7 @@ export class TodoService {
 
   }
   removeTodo(id: any){
-    return this.http.delete('http://localhost:5000/deleteTodo'+id);
+    return this.http.delete('http://localhost:5000/deleteTodo/'+id);
 
 
   }

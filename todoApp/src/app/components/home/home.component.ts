@@ -1,6 +1,10 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+
+
 import { TodoService } from 'src/app/services/todo.service';
+
 
 
 @Component({
@@ -10,63 +14,74 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class HomeComponent implements OnInit {
 
-
+  
  
-  data = {
-    pendings:
-      ["spor"],
-    inProgress:
-      ["yemek"],
-    done:
-      ["İş"]
-  }
+
 
   constructor(
     private todoService:TodoService
     
   ) { }
 
+
+ 
+  
+
   ngOnInit(): void {
-    //this.getAllTodos();
+    this.getAllTodos();
 
     
  
     }
-    drop(event: CdkDragDrop<string[]>) {
-      if (event.previousContainer === event.container) {
-        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      } else {
-        transferArrayItem(event.previousContainer.data,
-                          event.container.data,
-                          event.previousIndex,
-                          event.currentIndex);
+  
 
-                          
-      }
-    }
+  addTodo(title: any, describtion: any)
+  {
+    console.log(title);
+      const obj = { "Title": title, "desc": describtion };
 
-    addTodo(title: any,describtion: any)
-    {
-    const obj = {Title:title.value,desc:describtion.value};
     this.todoService.addTodo(obj)
-    .subscribe((res: any)=>{
-      console.log(res);
+      .subscribe((res: any) => {
+        console.log(res);
     },(err: any)=>{
       console.log(err);
     });
     }
+  todoList: any;
+  todoId:any;
+  getAllTodos(){
+       this.todoService.getAllTodos()
+         .subscribe(res => {
+           console.log(res);
+           this.todoList=res["results"];
+           
+           
+           
+           
+         },
+       (err)=>{
+       console.log(err);
+       });
+     }
 
-    // getAllTodos(){
-    //   this.todoService.getAllTodos()
-    //   .subscribe((res)=>{
-    //     Object.keys(res).forEach((key)=>{
-          
-    //        return this.data;
-    //     })
-    //   },(err)=>{
-    //   console.log(err);
-    //   });
-    // }
+
+
+     todoid:any;
+     removeTodo(id: any){
+       this.todoid=id.value;
+       
+      this.todoService.removeTodo(this.todoid)
+      .subscribe(res=>{
+        console.log(id);
+        this.getAllTodos();
+        
+      },err=>{
+        console.log(err);
+        this.getAllTodos();
+      });
+      
+     }
+     
  
     
   }

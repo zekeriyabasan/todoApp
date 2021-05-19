@@ -12,35 +12,84 @@
             <div class="col-md-6">
               
 
-                <form class="example-form">
+              <form class="example-form">
 
-                  <mat-form-field class="example-full-width">
-                      
-                    <input matInput placeholder="Title " #todoTitle >
-                    
+                <mat-form-field class="example-full-width">
 
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                      
-                    <input matInput placeholder="Description "#todoDescription >
-                    
+                  <input matInput placeholder="Title " #todoTitle>
 
-                  </mat-form-field>
 
-                    
-                    <button mat-raised-button color="primary" type="submit" (click)="addTodo(todoTitle,todoDescription)" >Ekle</button>
-                  </form>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+
+                  <input matInput placeholder="Description " #todoDescription>
+
+
+                </mat-form-field>
+
+
+                <button mat-raised-button color="primary" type="submit" (click)="addTodo(todoTitle,todoDescription)">Ekle</button>
+                <mat-form-field class="example-full-width">
+
+                  <input matInput placeholder="Delet by Todo ID " #todoId>
+
+
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" (click)="removeTodo(todoId)" >Sil</button>
+
+
+               
+                
+              </form>
                 
                   
             </div>
         </div>
       
-       
-        
-        
-        
+        <style>
+
+          table,td,th {
+            border:1px solid black;
+          }
+
+          table{
+            border-collapse:collapse;
+            width: 90%;
+
+          }
+          th{
+            height:50px;
+          }
+
+        </style>
+
+        <h2>Todo List</h2>
+        <table>
+          <tr>
+            <th>Todo ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>createDate</th>
+            <th>updateDate</th>
+          </tr>
+          
+          <tr *ngFor="let com of todoList">
+            <td>{{com["_id"]}}</td>
+            <td>{{com["Title"]}}</td>
+            <td>{{com["desc"]}}</td>
+            <td>{{com["created_at"]}}</td>
+            <td>{{com["updated_at"]}}</td>
             
-              
+            
+           
+          </tr>
+          
+          
+
+          
+        </table>
+        
+        
               
             
         
