@@ -1,6 +1,9 @@
 
 => sayfa içerisindeki input ve butonları kullanarak id e göre delete update title ve description girdilerine göre post metodlarıyla yapılacak ekleyebilir , güncelleyebilir,silebilir ve Get metodu sayesinde yapılacaklar listesini görebilirsiniz.
 
+=> komut isteminde todoApp Dosyası yoluna gidip npm install node js komutunu çalıştrın ardından 
+=> ng serve -o komutunu çalıştırın  `http://localhost:4200/` portundan ulaşım sağlayabilirsiniz.
+
 # TodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.12.
