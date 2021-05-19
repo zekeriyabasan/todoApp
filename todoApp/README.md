@@ -1,3 +1,6 @@
+
+=> sayfa içerisindeki input ve butonları kullanarak id e göre delete update title ve description girdilerine göre post metodlarıyla yapılacak ekleyebilir , güncelleyebilir,silebilir ve Get metodu sayesinde yapılacaklar listesini görebilirsiniz.
+
 # TodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.12.
