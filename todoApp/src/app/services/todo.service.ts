@@ -23,8 +23,8 @@ export class TodoService {
     return this.http.get('http://localhost:5000/getTodos');
 
   }
-  updateTodo(obj: any){
-    return this.http.put('http://localhost:5000/updateTodo',obj);
+  updateTodo(id: any, obj: any):Observable<any>{
+    return this.http.put('http://localhost:5000/updateTodo/'+id, obj); // {"Title":"Update","desc":"update desc"}
 
   }
   removeTodo(id: any){

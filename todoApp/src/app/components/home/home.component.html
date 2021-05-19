@@ -13,6 +13,14 @@
               
 
               <form class="example-form">
+                <mat-form-field class="example-full-width">
+
+                  <input matInput placeholder="Delete or update for Todo ID " #todoId>
+
+
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" (click)="removeTodo(todoId)">Sil</button>
 
                 <mat-form-field class="example-full-width">
 
@@ -26,20 +34,23 @@
 
 
                 </mat-form-field>
-
-
                 <button mat-raised-button color="primary" type="submit" (click)="addTodo(todoTitle,todoDescription)">Ekle</button>
+
                 <mat-form-field class="example-full-width">
 
-                  <input matInput placeholder="Delet by Todo ID " #todoId>
+                  <input matInput placeholder="Is Completed " #is_completed>
 
 
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" (click)="removeTodo(todoId)" >Sil</button>
+                <button mat-raised-button color="primary" type="submit" (click)="updateTodo(todoId,todoTitle,todoDescription,is_completed)">Güncelle</button>
 
 
-               
                 
+
+
+
+
+
               </form>
                 
                   
@@ -71,6 +82,7 @@
             <th>Description</th>
             <th>createDate</th>
             <th>updateDate</th>
+            <th>Case</th>
           </tr>
           
           <tr *ngFor="let com of todoList">
@@ -79,9 +91,14 @@
             <td>{{com["desc"]}}</td>
             <td>{{com["created_at"]}}</td>
             <td>{{com["updated_at"]}}</td>
+
+            <td><img class="svg" src="assets/svg/{{com['is_completed']}}.svg" width="45" height="45"></td>
             
             
-           
+
+
+
+
           </tr>
           
           
